@@ -1,0 +1,46 @@
+void setup() {
+  size(600, 600);
+  background(255, 15, 15);
+
+  // Example calls with different locations/sizes
+  drawHouse(100, 300, 100, 100);
+  drawRobot(260, 300, 80, 100);
+  drawFlower(430, 150, 60);
+}
+
+// House: positioned at (x,y) with given width and height
+void drawHouse(int x, int y, int w, int h) {
+  // main box
+  rect(x, y, w, h);
+  // roof (triangle above)
+  triangle(x, y, x + w/2, y - h/2, x + w, y);
+  // door (scaled to house)
+  rect(x + w*2/5, y + h/2, w/5, h/2);
+}
+
+// Robot: positioned at (x,y) top-left of body, with width and height
+void drawRobot(int x, int y, int w, int h) {
+  // body
+  rect(x, y, w, h);
+  // head (width ~ 3/4 of body, height ~ 3/5 of head width)
+  int headW = (int)(w * 0.75);
+  int headH = (int)(headW * 0.75);
+  rect(x + w/8, y - headH, headW, headH);
+  
+  // eyes (two circles)
+  ellipse(x + w/4, y - headH/2, w/5, w/5);
+  ellipse(x + 3*w/4, y - headH/2, w/5, w/5);
+}
+
+// Flower: positioned at (x,y) center, with size (diameter of petals)
+void drawFlower(int x, int y, int d) {
+  int r = d/2;
+  // petals around center
+  ellipse(x - r, y, d, d);
+  ellipse(x + r, y, d, d);
+  ellipse(x, y - r, d, d);
+  ellipse(x, y + r, d, d);
+  
+  // center
+  ellipse(x, y, d*3/4, d*3/4);
+}
